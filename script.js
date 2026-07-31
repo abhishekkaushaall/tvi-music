@@ -23,7 +23,27 @@ function attemptPlayMusic() {
   }
 }
 
-// Feature 1: Floating Heart Trail on Clicks
+// Feature: Spawner for Ambient Background Floating Hearts
+function createAmbientHeart() {
+  const hearts = ["💖", "💕", "🌸", "✨", "❤️"];
+  const heart = document.createElement("span");
+  heart.className = "bg-heart";
+  heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+  heart.style.left = `${Math.random() * 95}vw`;
+  heart.style.fontSize = `${Math.random() * 1.2 + 0.8}rem`;
+  
+  const duration = Math.random() * 5 + 6; // 6s to 11s duration
+  heart.style.animationDuration = `${duration}s`;
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), duration * 1000);
+}
+
+// Continuously spawn background ambient hearts
+setInterval(createAmbientHeart, 700);
+
+// Floating Heart Trail on Clicks
 document.addEventListener("click", (e) => {
   if (e.target.id === "music-toggle") return;
 
@@ -76,12 +96,12 @@ function goToCard(cardId) {
       });
     }
 
-    // Feature 3: Start Typewriter Effect
+    // Start Typewriter Effect
     startTypewriter();
   }
 }
 
-// Feature 3: Typewriter Logic
+// Typewriter Logic
 function startTypewriter() {
   if (typed) return;
   typed = true;
