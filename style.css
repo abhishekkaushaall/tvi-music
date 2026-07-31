@@ -16,7 +16,7 @@ body {
   position: relative;
 }
 
-/* Feature: Ambient Background Floating Hearts */
+/* Ambient Background Floating Hearts */
 .bg-heart {
   position: fixed;
   bottom: -50px;
