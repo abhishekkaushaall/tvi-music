@@ -3,27 +3,12 @@ let typed = false;
 const bgMusic = document.getElementById("bg-music");
 const musicBtn = document.getElementById("music-toggle");
 
-// 🔒 PASSCODE SET TO "chair"
-const SECRET_PASSCODE = "chair";
-
-// Passcode Check on Page Load
+// Attempt music play on page load
 window.addEventListener("DOMContentLoaded", () => {
-  const userEntry = prompt("🍸 Security Check: 3 words, 8 letters... Enter the secret passcode to unlock your UES surprise:");
-  
-  if (userEntry === null || userEntry.trim().toLowerCase() !== SECRET_PASSCODE.toLowerCase()) { 
-    alert("Wrong code! Access Denied 😜");
-    document.body.innerHTML = `
-      <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; padding:20px;">
-        <h1 style="color:#ff4d6d; font-size:1.8rem; margin-bottom:10px;">Access Denied! 🛑</h1>
-        <p style="color:#666; font-size:1rem;">Only my Blair Waldorf gets to view this page!</p>
-      </div>
-    `;
-  } else {
-    attemptPlayMusic();
-  }
+  attemptPlayMusic();
 });
 
-// Fallback: Start music on first touch anywhere
+// Start music on first touch/click anywhere on the screen
 document.addEventListener("click", attemptPlayMusic, { once: true });
 document.addEventListener("touchstart", attemptPlayMusic, { once: true });
 
