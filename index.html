@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Happy Girlfriend's Day!</title>
     <link rel="stylesheet" href="./style.css" />
-    <!-- Feature 1: Canvas Confetti Library -->
+    <!-- Canvas Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   </head>
   <body>
 
-    <!-- Feature 2: Floating Mute/Unmute Toggle -->
+    <!-- Floating Mute/Unmute Toggle -->
     <button id="music-toggle" title="Toggle Music">🔊</button>
 
     <!-- Background Music -->
@@ -65,8 +65,16 @@
       <div class="card" id="card-5">
         <!-- Reusing her-photo.jpg until you upload her-photo5.jpg later -->
         <img src="her-photo.jpg" alt="Photo 5">
-        <h1>I knew you couldn't resist! Happy Girlfriend's Day, my favorite headache! 💖✨</h1>
-        <p>You're stuck with me forever now! Thanks for putting up with me. I love you so much! 😘</p>
+        
+        <!-- Feature 3: Typewriter Text Target Elements -->
+        <h1 id="typewriter-h1"></h1>
+        <p id="typewriter-p"></p>
+
+        <!-- Feature 2: Flip Coupon Box -->
+        <div class="coupon-box" onclick="this.classList.toggle('flipped')">
+          <div class="coupon-front">🎁 Tap to open your prize!</div>
+          <div class="coupon-back">🎟️ Good for 1 Ice Cream Date & Unlimited Hugs! (Non-refundable) 💕</div>
+        </div>
       </div>
 
     </div>
@@ -74,5 +82,3 @@
     <script src="./script.js"></script>
   </body>
 </html>
-
-
