@@ -3,7 +3,7 @@ let typed = false;
 const bgMusic = document.getElementById("bg-music");
 const musicBtn = document.getElementById("music-toggle");
 
-// 🔒 CHUCK BASS SECRET PASSCODE
+// 🔒 PASSCODE SET TO "chair"
 const SECRET_PASSCODE = "chair";
 
 // Passcode Check on Page Load
