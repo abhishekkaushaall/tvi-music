@@ -10,7 +10,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #ffe6e8;
+  background: radial-gradient(circle at center, #fff0f3 0%, #ffccd5 100%);
   padding: 20px;
   overflow-x: hidden;
   position: relative;
