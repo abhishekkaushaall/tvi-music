@@ -1,13 +1,14 @@
 let musicStarted = false;
+let typed = false;
 const bgMusic = document.getElementById("bg-music");
 const musicBtn = document.getElementById("music-toggle");
 
-// Attempt play on load
+// Attempt music play on page load
 window.addEventListener("DOMContentLoaded", () => {
   attemptPlayMusic();
 });
 
-// Fallback: Start music on first tap anywhere
+// Fallback: Start music on first touch anywhere
 document.addEventListener("click", attemptPlayMusic, { once: true });
 document.addEventListener("touchstart", attemptPlayMusic, { once: true });
 
@@ -22,7 +23,22 @@ function attemptPlayMusic() {
   }
 }
 
-// Feature 2: Sound Toggle Logic
+// Feature 1: Floating Heart Trail on Clicks
+document.addEventListener("click", (e) => {
+  if (e.target.id === "music-toggle") return;
+
+  const hearts = ["💖", "💕", "✨", "🌸", "❤️"];
+  const heart = document.createElement("span");
+  heart.className = "heart-particle";
+  heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+  heart.style.left = `${e.clientX - 12}px`;
+  heart.style.top = `${e.clientY - 12}px`;
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 1000);
+});
+
+// Mute Toggle Logic
 if (musicBtn && bgMusic) {
   musicBtn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -49,14 +65,57 @@ function goToCard(cardId) {
     targetCard.classList.add('active');
   }
 
-  // Feature 1: Trigger Confetti Burst on YES Page
-  if (cardId === 'card-5' && typeof confetti === 'function') {
-    confetti({
-      particleCount: 120,
-      spread: 80,
-      origin: { y: 0.6 }
-    });
+  // Grand Finale Triggers (Card 5)
+  if (cardId === 'card-5') {
+    // Fire Confetti
+    if (typeof confetti === 'function') {
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+    }
+
+    // Feature 3: Start Typewriter Effect
+    startTypewriter();
   }
+}
+
+// Feature 3: Typewriter Logic
+function startTypewriter() {
+  if (typed) return;
+  typed = true;
+
+  const h1Text = "I knew you couldn't resist! Happy Girlfriend's Day, my favorite headache! 💖✨";
+  const pText = "You're stuck with me forever now! Thanks for putting up with me. I love you so much! 😘";
+  
+  let h1Index = 0;
+  let pIndex = 0;
+  
+  const h1Elem = document.getElementById("typewriter-h1");
+  const pElem = document.getElementById("typewriter-p");
+
+  if (!h1Elem || !pElem) return;
+
+  function typeH1() {
+    if (h1Index < h1Text.length) {
+      h1Elem.textContent += h1Text.charAt(h1Index);
+      h1Index++;
+      setTimeout(typeH1, 35);
+    } else {
+      setTimeout(typeP, 200);
+    }
+  }
+
+  function typeP() {
+    if (pIndex < pText.length) {
+      pElem.textContent += pText.charAt(pIndex);
+      pIndex++;
+      setTimeout(typeP, 25);
+    }
+  }
+
+  typeH1();
 }
 
 // Dodging "No" Button Logic
@@ -77,5 +136,3 @@ if (moveBtn) {
   moveBtn.addEventListener("mouseenter", moveButton);
   moveBtn.addEventListener("touchstart", moveButton);
 }
-
-
