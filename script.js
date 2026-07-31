@@ -3,9 +3,24 @@ let typed = false;
 const bgMusic = document.getElementById("bg-music");
 const musicBtn = document.getElementById("music-toggle");
 
-// Attempt music play on page load
+// 🔒 CHUCK BASS SECRET PASSCODE
+const SECRET_PASSCODE = "chair";
+
+// Passcode Check on Page Load
 window.addEventListener("DOMContentLoaded", () => {
-  attemptPlayMusic();
+  const userEntry = prompt("🍸 Security Check: 3 words, 8 letters... Enter the secret passcode to unlock your UES surprise:");
+  
+  if (userEntry === null || userEntry.trim().toLowerCase() !== SECRET_PASSCODE.toLowerCase()) { 
+    alert("Wrong code! Access Denied 😜");
+    document.body.innerHTML = `
+      <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; padding:20px;">
+        <h1 style="color:#ff4d6d; font-size:1.8rem; margin-bottom:10px;">Access Denied! 🛑</h1>
+        <p style="color:#666; font-size:1rem;">Only my Blair Waldorf gets to view this page!</p>
+      </div>
+    `;
+  } else {
+    attemptPlayMusic();
+  }
 });
 
 // Fallback: Start music on first touch anywhere
@@ -30,10 +45,9 @@ function createAmbientHeart() {
   heart.className = "bg-heart";
   heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
   heart.style.left = `${Math.random() * 95}vw`;
-  // Multi-size variation (1.0rem to 2.5rem) for realistic depth
   heart.style.fontSize = `${Math.random() * 1.5 + 1.0}rem`;
   
-  const duration = Math.random() * 5 + 6; // 6s to 11s duration
+  const duration = Math.random() * 5 + 6;
   heart.style.animationDuration = `${duration}s`;
 
   document.body.appendChild(heart);
@@ -41,7 +55,6 @@ function createAmbientHeart() {
   setTimeout(() => heart.remove(), duration * 1000);
 }
 
-// Continuously spawn background ambient hearts
 setInterval(createAmbientHeart, 700);
 
 // Floating Heart Trail on Clicks
@@ -88,7 +101,6 @@ function goToCard(cardId) {
 
   // Grand Finale Triggers (Card 5)
   if (cardId === 'card-5') {
-    // Fire Confetti
     if (typeof confetti === 'function') {
       confetti({
         particleCount: 120,
@@ -97,7 +109,6 @@ function goToCard(cardId) {
       });
     }
 
-    // Start Typewriter Effect
     startTypewriter();
   }
 }
