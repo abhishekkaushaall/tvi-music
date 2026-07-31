@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Girlfriend's Day!</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+
+    <!-- Background Music -->
+    <audio id="bg-music" src="music.mp3" loop></audio>
+
+    <div class="container">
+
+      <!-- CARD 1: Initial Question -->
+      <div class="card active" id="card-1">
+        <img src="her-photo.jpg" alt="Photo 1">
+        <h1>So... do you officially think I'm the best boyfriend ever? 👑</h1>
+        <div class="btn">
+          <button class="yes-btn" onclick="goToCard('card-5')">100% Yes! 🥰</button>
+          <button onclick="goToCard('card-2')">Not even close 😜</button>
+        </div>
+      </div>
+
+      <!-- CARD 2: First No -->
+      <div class="card" id="card-2">
+        <img src="her-photo2.JPG" alt="Photo 2">
+        <h1>Wait... where are you going? You misclicked right? 🤨</h1>
+        <p>I know your finger slipped. Try again!</p>
+        <div class="btn">
+          <button class="yes-btn" onclick="goToCard('card-5')">Okay fine, try again 🙄</button>
+          <button onclick="goToCard('card-3')">Still No 😜</button>
+        </div>
+      </div>
+
+      <!-- CARD 3: Second No -->
+      <div class="card" id="card-3">
+        <img src="her-photo3.JPG" alt="Photo 3">
+        <h1>Are you serious right now? 😒</h1>
+        <p>Don't test my patience! Just say YES!</p>
+        <div class="btn">
+          <button class="yes-btn" onclick="goToCard('card-5')">Fine, 100% YES! 🥰</button>
+          <button onclick="goToCard('card-4')">Nope 😜</button>
+        </div>
+      </div>
+
+      <!-- CARD 4: Third No (The Dodging Button) -->
+      <div class="card" id="card-4">
+        <img src="her-photo4.jpg" alt="Photo 4">
+        <h1>Are you really still trying? You're so stubborn! 😭</h1>
+        <p>Bhut galat baat hai yaar, just click YES already! 💕</p>
+        <div class="btn">
+          <button class="yes-btn" onclick="goToCard('card-5')">Fine, 100% YES! 🥰</button>
+          <button id="move-random">No 😜</button>
+        </div>
+      </div>
+
+      <!-- CARD 5: Grand Finale Celebration -->
+      <div class="card" id="card-5">
+        <!-- Reusing her-photo.jpg until you upload her-photo5.jpg later -->
+        <img src="her-photo.jpg" alt="Photo 5">
+        <h1>YAYYY! Best day ever! 🎉🥰</h1>
+        <p>I knew you couldn't say no! Happy Girlfriend's Day! ❤️</p>
+      </div>
+
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
