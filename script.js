@@ -23,14 +23,15 @@ function attemptPlayMusic() {
   }
 }
 
-// Feature: Spawner for Ambient Background Floating Hearts
+// Spawner for Ambient Background Floating Hearts
 function createAmbientHeart() {
   const hearts = ["💖", "💕", "🌸", "✨", "❤️"];
   const heart = document.createElement("span");
   heart.className = "bg-heart";
   heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
   heart.style.left = `${Math.random() * 95}vw`;
-  heart.style.fontSize = `${Math.random() * 1.2 + 0.8}rem`;
+  // Multi-size variation (1.0rem to 2.5rem) for realistic depth
+  heart.style.fontSize = `${Math.random() * 1.5 + 1.0}rem`;
   
   const duration = Math.random() * 5 + 6; // 6s to 11s duration
   heart.style.animationDuration = `${duration}s`;
