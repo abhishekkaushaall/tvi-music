@@ -1,12 +1,29 @@
 let musicStarted = false;
 const bgMusic = document.getElementById("bg-music");
 
-function goToCard(cardId) {
-  // Plays music continuously starting on first tap
-  if (!musicStarted) {
-    bgMusic.play().catch(e => console.log("Audio play deferred:", e));
-    musicStarted = true;
+// 1. Try playing immediately as soon as the site loads
+window.addEventListener("DOMContentLoaded", () => {
+  attemptPlayMusic();
+});
+
+// 2. Fallback: Start music on the VERY FIRST tap/click anywhere on screen
+document.addEventListener("click", attemptPlayMusic, { once: true });
+document.addEventListener("touchstart", attemptPlayMusic, { once: true });
+
+function attemptPlayMusic() {
+  if (!musicStarted && bgMusic) {
+    bgMusic.play().then(() => {
+      musicStarted = true;
+    }).catch(e => {
+      // Browser blocked instant autoplay (waiting for first user tap)
+      console.log("Autoplay waiting for touch event:", e);
+    });
   }
+}
+
+// Card Navigation
+function goToCard(cardId) {
+  attemptPlayMusic();
 
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => card.classList.remove('active'));
@@ -17,14 +34,12 @@ function goToCard(cardId) {
   }
 }
 
+// Dodging "No" Button Logic
 const moveBtn = document.getElementById("move-random");
 
 if (moveBtn) {
   function moveButton() {
-    if (!musicStarted) {
-      bgMusic.play().catch(e => console.log("Audio play deferred:", e));
-      musicStarted = true;
-    }
+    attemptPlayMusic();
 
     moveBtn.style.position = "fixed";
     const x = Math.random() * (window.innerWidth - moveBtn.offsetWidth - 40) + 20;
