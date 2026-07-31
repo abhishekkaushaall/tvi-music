@@ -13,9 +13,37 @@ body {
   background-color: #ffe6e8;
   padding: 20px;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Feature 1: Floating Heart Particles */
+/* Feature: Ambient Background Floating Hearts */
+.bg-heart {
+  position: fixed;
+  bottom: -50px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  animation: ambientFloat linear forwards;
+}
+
+@keyframes ambientFloat {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.35;
+  }
+  80% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Floating Heart Click Particles */
 .heart-particle {
   position: fixed;
   pointer-events: none;
@@ -54,6 +82,8 @@ body {
   text-align: center;
   max-width: 400px;
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .card {
@@ -141,7 +171,7 @@ button:hover {
   position: relative;
 }
 
-/* Feature 2: Coupon Box Flip Effect */
+/* Coupon Box Flip Effect */
 .coupon-box {
   margin: 15px auto 0;
   width: 100%;
